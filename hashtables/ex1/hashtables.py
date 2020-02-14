@@ -31,19 +31,13 @@ def hash(x, max):
 def hash_table_insert(hash_table, key, value):
     index = hash(key, len(hash_table.storage))
 
-    current_pair = hash_table.storage[index]
-    last_pair = None
-
-    while current_pair is not None and current_pair.key != key:
-        last_pair = current_pair
-        current_pair = last_pair.next
-
-    if current_pair is not None:
-        current_pair.value = value
+    if hash_table.storage[index] is None:
+        hash_table.storage[index] = LinkedPair(key, value)
+    
     else:
-        new_pair = LinkedPair(key, value)
-        new_pair.next = hash_table.storage[index]
-        hash_table.storage[index] = new_pair
+        node = LinkedPair(key, value)
+        node.next = hash_table.storage[index]
+        hash_table.storage[index] = node
 
 
 def hash_table_remove(hash_table, key):
