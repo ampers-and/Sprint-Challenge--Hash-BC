@@ -23,8 +23,9 @@ def proof_of_work(last_proof):
     start = timer()
 
     print("Searching for next proof")
-    proof = 0
     #  TODO: Your code here
+
+    proof = random.randint(-18446744073709552000, 18446744073709552000) #2**64
 
     while valid_proof(last_proof, proof) is False:
         proof += 1
